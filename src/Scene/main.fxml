@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import Model.StoreAutoCompleteTextField?>
+<AnchorPane maxHeight="500.0" maxWidth="-Infinity" minHeight="500.0" minWidth="800.0" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MainController">
+    <children>
+        <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <tabs>
+                <Tab fx:id="BudgetTab" text="Budget">
+                    <content>
+                        <AnchorPane fx:id="BudgetAnchor" prefHeight="${BudgetTab.height}" prefWidth="${BudgetTab.width}">
+                            <children>
+                                <GridPane fx:id="BudgetGrid" layoutX="14.0" layoutY="-14.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="-14.0" AnchorPane.topAnchor="-14.0">
+                                    <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" prefWidth="${BudgetAnchor.width*0.7}" />
+                                        <ColumnConstraints hgrow="SOMETIMES" prefWidth="${BudgetAnchor.width*0.3}" />
+                                    </columnConstraints>
+                                    <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="${BudgetGrid.height*0.01}" vgrow="SOMETIMES" />
+                                        <RowConstraints fx:id="BudgetNeedsRow" minHeight="10.0" prefHeight="${BudgetGrid.height*0.3}" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="${BudgetGrid.height*0.3}" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="${BudgetGrid.height*0.3}" vgrow="SOMETIMES" />
+                                    </rowConstraints>
+                                    <children>
+                                        <TableView fx:id="BudgetWantsTable" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
+                                            <columns>
+                                                <TableColumn fx:id="BudgetWantsColumn" editable="false" prefWidth="${BudgetWantsTable.width}" resizable="false" sortable="false" text="Wants">
+                                                    <columns>
+                                                        <TableColumn fx:id="BudgetWantsCategoryColumn" prefWidth="${BudgetWantsTable.width*0.4}" resizable="false" text="Category" />
+                                                        <TableColumn fx:id="BudgetWantsBudgetedAmountColumn" prefWidth="${BudgetWantsTable.width*0.15}" text="Budgeted" />
+                                                        <TableColumn fx:id="BudgetWantsSpentColumn" editable="false" prefWidth="${BudgetWantsTable.width*0.15}" text="Spent" />
+                                                        <TableColumn fx:id="BudgetWantsDifferentialColumn" editable="false" prefWidth="${BudgetWantsTable.width*0.15}" text="Differential" />
+                                                        <TableColumn fx:id="BudgetWantsSavedColumn" prefWidth="${BudgetWantsTable.width*0.15}" text="Saved" />
+                                                    </columns>
+                                                </TableColumn>
+                                            </columns>
+                                        </TableView>
+                                        <VBox fx:id="BudgetSavesVBox" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="3">
+                                            <children>
+                                                <HBox alignment="CENTER_LEFT" prefHeight="${BudgetSavesVBox.width*0.2}" prefWidth="200.0">
+                                                    <children>
+                                                        <Label text="Saving/Loan Payment/Investing">
+                                                            <font>
+                                                                <Font name="System Bold" size="14.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <Button mnemonicParsing="false" text="Add Category" />
+                                                        <Button mnemonicParsing="false" text="Remove Category" />
+                                                    </children>
+                                                </HBox>
+                                                <TableView fx:id="BudgetSavesTable" layoutX="10.0" layoutY="246.0" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3">
+                                                    <columns>
+                                                        <TableColumn fx:id="BudgetSavesCategoryColumn" prefWidth="${BudgetSavesTable.width*0.4}" resizable="false" text="Category" />
+                                                        <TableColumn fx:id="BudgetSavesBudgetedAmountColumn" prefWidth="${BudgetSavesTable.width*0.15}" text="Budget Amount" />
+                                                        <TableColumn fx:id="BudgetSavesSpentColumn" editable="false" prefWidth="${BudgetSavesTable.width*0.15}" text="Spent" />
+                                                        <TableColumn fx:id="BudgetSavesDifferentialColumn" editable="false" prefWidth="${BudgetSavesTable.width*0.15}" text="Differential" />
+                                                        <TableColumn fx:id="BudgetSavesSavedColumn" prefWidth="${BudgetSavesTable.width*0.15}" text="Saved" />
+                                                    </columns>
+                                                </TableView>
+                                            </children>
+                                        </VBox>
+                                        <VBox fx:id="BudgetSavesVBox" prefHeight="${BudgetNeedsRow.prefHeight}" prefWidth="${BudgetNeedsRow.prefWidth}" GridPane.rowIndex="1">
+                                            <children>
+                                                <GridPane fx:id="BudgetSavesGrid" prefHeight="${BudgetSavesVBox.height*0.5}">
+                                                    <columnConstraints>
+                                                        <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="566.0" minWidth="10.0" prefWidth="${BudgetSavesGrid.width*0.5}" />
+                                                        <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="566.0" minWidth="10.0" prefWidth="${BudgetSavesGrid.width*0.5}" />
+                                                    </columnConstraints>
+                                                    <rowConstraints>
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                    </rowConstraints>
+                                                    <children>
+                                                        <Label text="Needs:">
+                                                            <font>
+                                                                <Font name="System Bold" size="14.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <Button mnemonicParsing="false" text="Add Category" GridPane.ColumnIndex="1" />
+                                                        <Button mnemonicParsing="false" text="Remove Category" GridPane.ColumnIndex="1" />
+                                                    </children>
+                                                </GridPane>
+                                                <TableView fx:id="BudgetNeedsTable" prefHeight="${BudgetSavesVBox.width*0.5}" prefWidth="200.0">
+                                                    <columns>
+                                                        <TableColumn fx:id="BudgetNeedsCategoryColumn" prefWidth="${BudgetNeedsTable.width*0.4}" resizable="false" text="Category" />
+                                                        <TableColumn fx:id="BudgetNeedsBudgetedAmountColumn" prefWidth="${BudgetNeedsTable.width*0.15}" text="Budgeted" />
+                                                        <TableColumn fx:id="BudgetNeedsSpentColumn" editable="false" prefWidth="${BudgetNeedsTable.width*0.15}" text="Spent" />
+                                                        <TableColumn fx:id="BudgetNeedsDifferentialColumn" editable="false" prefWidth="${BudgetNeedsTable.width*0.15}" text="Differential" />
+                                                        <TableColumn fx:id="BudgetNeedsSavedColumn" prefWidth="${BudgetNeedsTable.width*0.15}" text="Saved" />
+                                                    </columns>
+                                                </TableView>
+                                            </children>
+                                        </VBox>
+                                    </children>
+                                </GridPane>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab text="Add">
+                    <content>
+                        <GridPane prefHeight="444.0" prefWidth="468.0">
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="144.0" minHeight="10.0" prefHeight="87.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="156.0" minHeight="10.0" prefHeight="156.0" vgrow="SOMETIMES" />
+                            </rowConstraints>
+                            <children>
+                                <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: Black;" GridPane.rowSpan="2">
+                                    <children>
+                                        <Label alignment="CENTER" prefWidth="1000.0" text="Add Expense" textAlignment="CENTER">
+                                            <font>
+                                                <Font size="18.0" />
+                                            </font>
+                                        </Label>
+                                        <GridPane alignment="CENTER" prefHeight="350.0" prefWidth="322.0">
+                                            <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="156.0" minWidth="10.0" prefWidth="70.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="257.0" minWidth="10.0" prefWidth="252.0" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
+                                            <children>
+                                                <Label alignment="TOP_LEFT" text="Date:" GridPane.rowIndex="1" />
+                                                <Label text="Store:" GridPane.rowIndex="2" />
+                                                <Label text="Amount:" GridPane.rowIndex="3" />
+                                                <Label text="Category:" GridPane.rowIndex="4" />
+                                                <ChoiceBox fx:id="expenseDateCB" prefWidth="50.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <StoreAutoCompleteTextField fx:id="expenseStoreTF" prefHeight="25.0" prefWidth="50.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                <TextField fx:id="expenseAmountTF" prefWidth="125.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                                <ChoiceBox fx:id="expenseCategory" prefWidth="125.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                                <Button fx:id="expenseSubmit" mnemonicParsing="false" onAction="#onExpenseSubmit" text="Submit" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                                <Label text="Year: " GridPane.halignment="RIGHT" />
+                                                <ChoiceBox fx:id="expenseYearCB" onAction="#onExpenseYearSelected" prefWidth="50.0" GridPane.columnIndex="1" />
+                                                <HBox alignment="CENTER_RIGHT" prefHeight="37.0" prefWidth="214.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
+                                                    <children>
+                                                        <Label text="Month: " />
+                                                        <ChoiceBox fx:id="expenseMonthCB" onAction="#onExpenseMonthSelected" prefWidth="100.0" />
+                                                    </children>
+                                                    <GridPane.margin>
+                                                        <Insets />
+                                                    </GridPane.margin>
+                                                </HBox>
+                                            </children>
+                                        </GridPane>
+                                    </children>
+                                    <GridPane.margin>
+                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                    </GridPane.margin>
+                                    <padding>
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    </padding>
+                                </VBox>
+                                <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: Black;" GridPane.columnIndex="1" GridPane.rowSpan="2">
+                                    <children>
+                                        <Label alignment="CENTER" prefWidth="1000.0" text="Add Income" textAlignment="CENTER">
+                                            <font>
+                                                <Font size="18.0" />
+                                            </font>
+                                        </Label>
+                                        <GridPane alignment="CENTER" prefHeight="350.0" prefWidth="322.0">
+                                            <children>
+                                                <Label alignment="TOP_LEFT" text="Date:" GridPane.rowIndex="1" />
+                                                <Label text="Source:" GridPane.rowIndex="2" />
+                                                <Label text="Amount:" GridPane.rowIndex="3" />
+                                                <Label text="Category:" GridPane.rowIndex="4" />
+                                                <ChoiceBox fx:id="incomeDateCB" prefWidth="50.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <TextField fx:id="incomeSourceTF" prefHeight="25.0" prefWidth="50.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                <TextField fx:id="incomeAmountTF" prefWidth="125.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                                <ChoiceBox fx:id="IncomeCategory" prefWidth="125.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                                <Button fx:id="IncomeSubmit" mnemonicParsing="false" onAction="#onIncomeSubmit" text="Submit" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                                <Label text="Year: " />
+                                                <ChoiceBox fx:id="incomeYearCB" onAction="#onIncomeYearSelected" prefWidth="50.0" GridPane.columnIndex="1" />
+                                                <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
+                                                    <children>
+                                                        <Label text="Month: " />
+                                                        <ChoiceBox fx:id="incomeMonthCB" onAction="#onIncomeMonthSelected" prefWidth="100.0" />
+                                                    </children>
+                                                    <GridPane.margin>
+                                                        <Insets />
+                                                    </GridPane.margin>
+                                                </HBox>
+                                            </children>
+                                            <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="156.0" minWidth="10.0" prefWidth="70.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="253.0" minWidth="10.0" prefWidth="251.0" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
+                                        </GridPane>
+                                    </children>
+                                    <padding>
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    </padding>
+                                    <GridPane.margin>
+                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                    </GridPane.margin>
+                                </VBox>
+                            </children>
+                        </GridPane>
+                    </content>
+                </Tab>
+                <Tab text="Monthly Detail">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    </columnConstraints>
+                                    <rowConstraints>
+                                        <RowConstraints maxHeight="143.0" minHeight="10.0" prefHeight="54.0" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="296.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="296.0" minHeight="10.0" prefHeight="181.0" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="286.0" minHeight="10.0" prefHeight="192.0" vgrow="SOMETIMES" />
+                                    </rowConstraints>
+                                    <children>
+                                        <GridPane prefHeight="25.0" prefWidth="322.0">
+                                            <children>
+                                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                                    <children>
+                                                        <Label text="Year: " />
+                                                        <ChoiceBox fx:id="MDYear" prefWidth="50.0" />
+                                                    </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
+                                                    <children>
+                                                        <Label text="Month: " />
+                                                        <ChoiceBox fx:id="MDMonth" prefWidth="50.0" />
+                                                    </children>
+                                                    <GridPane.margin>
+                                                        <Insets />
+                                                    </GridPane.margin>
+                                                </HBox>
+                                            </children>
+                                            <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
+                                        </GridPane>
+                                        <TableView fx:id="MDExpenseTable" editable="false" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2" GridPane.rowSpan="2">
+                                            <columns>
+                                                <TableColumn fx:id="MDExpenseDate" prefWidth="${MDExpenseTable.width*0.1}" resizable="false" text="Date" />
+                                                <TableColumn fx:id="MDExpenseStore" prefWidth="${MDExpenseTable.width*0.4}" resizable="false" text="Store" />
+                                                <TableColumn fx:id="MDExpenseAmount" prefWidth="${MDExpenseTable.width*0.2}" resizable="false" text="Amount" />
+                                                <TableColumn fx:id="MDExpenseCategory" prefWidth="${MDExpenseTable.width*0.3}" resizable="false" text="Category" />
+                                            </columns>
+                                            <GridPane.margin>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                            </GridPane.margin>
+                                        </TableView>
+                                        <Label alignment="CENTER" prefWidth="1000.0" text="Expenses" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                                            <font>
+                                                <Font size="18.0" />
+                                            </font>
+                                        </Label>
+                                        <TableView fx:id="MDIncomeTable" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.rowSpan="2">
+                                            <columns>
+                                                <TableColumn fx:id="MDIncomeDate" prefWidth="53.0" text="Date" />
+                                                <TableColumn fx:id="MDIncomeSource" prefWidth="97.0" text="Source" />
+                                                <TableColumn fx:id="MDIncomeAmount" prefWidth="75.0" text="Amount" />
+                                                <TableColumn fx:id="MDIncomeCategory" prefWidth="108.0" text="Category" />
+                                            </columns>
+                                            <GridPane.margin>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                            </GridPane.margin>
+                                        </TableView>
+                                        <Label alignment="CENTER" prefWidth="1000.0" text="Income" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                                            <font>
+                                                <Font size="18.0" />
+                                            </font>
+                                        </Label>
+                                        <Button fx:id="MDExpenseRemove" alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#onMDExpenseRemove" text="Remove Row" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+                                        <Button fx:id="MDIncomeRemove" alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#onMDIncomeRemove" text="Remove Row" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+                                        <Button fx:id="MDSubmit" mnemonicParsing="false" onAction="#onMDSubmitPressed" text="Submit" GridPane.columnIndex="1" />
+                                    </children>
+                                    <padding>
+                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                    </padding>
+                                </GridPane>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab text="Monthly Overview">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </children>
+</AnchorPane>
